@@ -44,6 +44,24 @@
     letter-spacing: 0.1em;
   }
 
+   /* Navbar */
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 4rem;
+    background: rgba(86, 61, 119, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .logo {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+  }
+
   .nav-links {
     display: flex;
     gap: 2.5rem;
@@ -54,7 +72,8 @@
     color: #ffffff;
     text-decoration: none;
     font-size: 0.95rem;
-    transition: 0.3s;
+    font-weight: 400;
+    transition: color 0.3s ease;
     position: relative;
   }
 
@@ -73,7 +92,6 @@
     background: #e1bee7;
     border-radius: 2px;
   }
-
   main {
     min-height: calc(100vh - 80px);
     display: flex;
