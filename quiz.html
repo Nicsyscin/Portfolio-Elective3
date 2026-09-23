@@ -28,23 +28,7 @@
     overflow-x: hidden;
   }
 
-  nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 4rem;
-    background: rgba(86, 61, 119, 0.6);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255,255,255,0.1);
-  }
-
-  .logo {
-    font-size: 1.25rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-  }
-
-   /* Navbar */
+  /* Navbar */
   nav {
     display: flex;
     justify-content: space-between;
@@ -124,6 +108,20 @@
     margin-bottom: 2rem;
   }
 
+  .quiz-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .quiz-images img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  }
+
   .btn {
     display: inline-block;
     background: #ffffff;
@@ -157,6 +155,10 @@
     .landing h1 {
       font-size: 2.3rem;
     }
+
+    .quiz-images {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
 </head>
@@ -183,10 +185,13 @@
       Here you can find all of my
       quiz activities, outputs, and assessments throughout the semester.
     </p>
-    <img src="quiz1.png" alt="Quiz 1 Screenshot">
-    <img src="quiz2.png" alt="Quiz 2 Screenshot">
-    <img src="quiz3.png" alt="Quiz 3 Screenshot">
-    <img src="longquiz.png" alt="Long Quiz Screenshot">
+
+    <div class="quiz-images">
+      <img src="quiz1.png" alt="Quiz 1 Screenshot">
+      <img src="quiz2.png" alt="Quiz 2 Screenshot">
+      <img src="quiz3.png" alt="Quiz 3 Screenshot">
+      <img src="longquiz.png" alt="Long Quiz Screenshot">
+    </div>
 
   </section>
 </main>
