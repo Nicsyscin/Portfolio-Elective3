@@ -1,4 +1,4 @@
-     <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -23,7 +23,7 @@
     overflow-x: hidden;
   }
 
-    /* Navbar */
+  /* Navbar */
   nav {
     display: flex;
     justify-content: space-between;
@@ -71,6 +71,7 @@
     background: #e1bee7;
     border-radius: 2px;
   }
+
   /* Header */
   .lab-header {
     text-align: center;
@@ -92,7 +93,7 @@
   /* Lab Grid */
   .lab-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 2rem;
     max-width: 1100px;
     margin: 2rem auto 4rem;
@@ -101,91 +102,88 @@
 
   /* Lab Card */
   .lab-card {
-    background: rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.07);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255,255,255,0.15);
-    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 18px;
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.18);
   }
 
   .lab-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.35);
+    border-color: rgba(242, 193, 78, 0.4);
   }
 
-  /* PDF Preview Area */
+  /* Preview Area (actual photo / PDF thumbnail) */
   .lab-preview {
     width: 100%;
-    height: 280px;
-    background: rgba(0,0,0,0.2);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    height: 220px;
+    background: linear-gradient(150deg, rgba(0,0,0,0.28), rgba(0,0,0,0.12));
     position: relative;
     overflow: hidden;
+    border-bottom: 1px solid rgba(255,255,255,0.14);
   }
 
-  .lab-preview iframe {
+  .lab-preview img {
     width: 100%;
     height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* PDFs are shown via a scaled, non-interactive iframe cropped to the top of page 1 */
+  .lab-preview iframe {
+    width: 130%;
+    height: 130%;
     border: none;
+    pointer-events: none;
+    position: absolute;
+    top: -5%;
+    left: -5%;
   }
 
-  .lab-preview .pdf-icon {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.75rem;
-    color: rgba(255,255,255,0.5);
-  }
-
-  .lab-preview .pdf-icon svg {
-    width: 56px;
-    height: 56px;
-    stroke: rgba(255,255,255,0.4);
-    fill: none;
-    stroke-width: 1.5;
-  }
-
-  .lab-preview .pdf-icon span {
-    font-size: 0.8rem;
-    font-weight: 500;
-    letter-spacing: 0.05em;
+  .lab-preview .preview-tag {
+    position: absolute;
+    bottom: 0.6rem;
+    right: 0.6rem;
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(4px);
+    color: rgba(255,255,255,0.85);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
+    padding: 0.25rem 0.6rem;
+    border-radius: 50px;
   }
 
   /* Card Body */
   .lab-body {
-    padding: 1.5rem;
+    padding: 1.4rem 1.5rem 1.6rem;
   }
 
   .lab-number {
     font-size: 0.7rem;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: #e1bee7;
-    margin-bottom: 0.5rem;
+    color: #f2c14e;
+    margin-bottom: 0.55rem;
   }
 
   .lab-body h3 {
     font-size: 1.15rem;
     font-weight: 600;
-    margin-bottom: 0.5rem;
-  }
-
-  .lab-body p {
-    font-size: 0.85rem;
-    color: rgba(255,255,255,0.7);
-    line-height: 1.6;
-    margin-bottom: 1.25rem;
+    margin-bottom: 1.1rem;
   }
 
   .lab-actions {
     display: flex;
-    gap: 0.75rem;
+    gap: 0.7rem;
   }
 
   .btn-view,
@@ -193,38 +191,43 @@
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
-    padding: 0.6rem 1.3rem;
+    padding: 0.6rem 1.2rem;
     border-radius: 50px;
     text-decoration: none;
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     font-weight: 600;
-    transition: all 0.3s ease;
+    transition: all 0.25s ease;
+    flex: 1;
+    justify-content: center;
   }
 
   .btn-view {
-    background: rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.08);
     color: #ffffff;
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.18);
   }
 
   .btn-view:hover {
-    background: rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.16);
+    border-color: rgba(255,255,255,0.3);
   }
 
   .btn-download {
-    background: #ffffff;
-    color: #5C425C;
+    background: #f2c14e;
+    color: #3a2a1a;
+    border: 1px solid #f2c14e;
   }
 
   .btn-download:hover {
-    background: #f3e5f5;
+    background: #f9dc8a;
     transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(242, 193, 78, 0.35);
   }
 
   .btn-view svg,
   .btn-download svg {
-    width: 15px;
-    height: 15px;
+    width: 14px;
+    height: 14px;
     stroke: currentColor;
     fill: none;
     stroke-width: 2;
@@ -276,33 +279,13 @@
   <!-- Laboratory 1 Card -->
   <div class="lab-card">
     <div class="lab-preview">
-      <!--
-        OPTION A: Embed the PDF for preview (uncomment below, comment out the pdf-icon div)
-        Change "lab1.pdf" to your actual file path
-      -->
-      <!--
-      <iframe src="lab1.pdf" title="Laboratory 1 Preview"></iframe>
-      -->
-
-      <!--
-        OPTION B: Show a placeholder icon (remove this if using Option A)
-      -->
-      <div class="pdf-icon">
-        <svg viewBox="0 0 24 24">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-          <polyline points="14 2 14 8 20 8"/>
-          <line x1="16" y1="13" x2="8" y2="13"/>
-          <line x1="16" y1="17" x2="8" y2="17"/>
-          <polyline points="10 9 9 9 8 9"/>
-        </svg>
-        <span>PDF Document</span>
-      </div>
+      <iframe src="lab1-rubric-saulog.pdf#toolbar=0&navpanes=0&scrollbar=0" title="VM Virtual Box preview"></iframe>
+      <span class="preview-tag">PDF</span>
     </div>
 
     <div class="lab-body">
       <div class="lab-number">Laboratory 1</div>
       <h3>VM Virtual Box</h3>
-      <p></p>
       <div class="lab-actions">
         <a href="lab1-rubric-saulog.pdf" target="_blank" class="btn-view">
           <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
@@ -317,70 +300,50 @@
   </div>
 
   <!-- Laboratory 2 Card -->
-<div class="lab-card">
-  <div class="lab-preview">
-    <div class="pdf-icon">
-      <svg viewBox="0 0 24 24">
-        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-        <polyline points="14 2 14 8 20 8"/>
-        <line x1="16" y1="13" x2="8" y2="13"/>
-        <line x1="16" y1="17" x2="8" y2="17"/>
-        <polyline points="10 9 9 9 8 9"/>
-      </svg>
-      <span>PDF Document</span>
+  <div class="lab-card">
+    <div class="lab-preview">
+      <iframe src="Lab-Act2.pdf#toolbar=0&navpanes=0&scrollbar=0" title="Lab Activity 2 preview"></iframe>
+      <span class="preview-tag">PDF</span>
     </div>
-  </div>
 
-  <div class="lab-body">
-    <div class="lab-number">Laboratory 2</div>
-    <h3>Lab Activity 2</h3>
-    <p></p>
-    <div class="lab-actions">
-      <a href="Lab-Act2.pdf" target="_blank" class="btn-view">
-        <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-        View
-      </a>
-      <a href="Lab-Act2.pdf" download class="btn-download">
-        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Download
-      </a>
+    <div class="lab-body">
+      <div class="lab-number">Laboratory 2</div>
+      <h3>Lab Activity 2</h3>
+      <div class="lab-actions">
+        <a href="Lab-Act2.pdf" target="_blank" class="btn-view">
+          <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          View
+        </a>
+        <a href="Lab-Act2.pdf" download class="btn-download">
+          <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download
+        </a>
+      </div>
     </div>
   </div>
-</div>
 
   <!-- Laboratory 3 Card -->
-<div class="lab-card">
-  <div class="lab-preview">
-    <div class="pdf-icon">
-      <svg viewBox="0 0 24 24">
-        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-        <polyline points="14 2 14 8 20 8"/>
-        <line x1="16" y1="13" x2="8" y2="13"/>
-        <line x1="16" y1="17" x2="8" y2="17"/>
-        <polyline points="10 9 9 9 8 9"/>
-      </svg>
-      <span>PNG</span>
+  <div class="lab-card">
+    <div class="lab-preview">
+      <img src="laboratory2.png" alt="Lab Activity 3 preview">
+      <span class="preview-tag">PNG</span>
+    </div>
+
+    <div class="lab-body">
+      <div class="lab-number">Laboratory 3</div>
+      <h3>Lab Activity 3</h3>
+      <div class="lab-actions">
+        <a href="laboratory2.png" target="_blank" class="btn-view">
+          <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          View
+        </a>
+        <a href="laboratory2.png" download class="btn-download">
+          <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download
+        </a>
+      </div>
     </div>
   </div>
-
-  <div class="lab-body">
-    <div class="lab-number">Laboratory 3</div>
-    <h3>Lab Activity 3</h3>
-    <p></p>
-    <div class="lab-actions">
-      <a href="laboratory2.png" target="_blank" class="btn-view">
-        <svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-        View
-      </a>
-      <a href="laboratory2.png" download class="btn-download">
-        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Download
-      </a>
-    </div>
-  </div>
-</div>
-
-  <!-- You can duplicate this card block for Laboratory 2, 3, etc. -->
 
 </section>
 
