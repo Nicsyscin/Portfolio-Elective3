@@ -113,14 +113,16 @@
 
   /* Square cards grid */
   .exam-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 1.75rem;
     text-align: left;
   }
 
   .exam-card {
     position: relative;
+    width: min(320px, 100%);
     aspect-ratio: 1 / 1;
     border: 1px solid rgba(255,255,255,0.2);
     border-radius: 20px;
@@ -351,7 +353,7 @@
       </button>
 
       <button class="exam-card" type="button">
-        <img src="midtermexam.png" alt="Midterm Exam Screenshot">
+        <img src="midtermexam.jpg" alt="Midterm Exam Screenshot">
         <div class="card-info">
           <h3>Midterm Exam</h3>
           <p>Midterm Examination</p>
