@@ -16,11 +16,16 @@
     font-family: 'Poppins', sans-serif;
   }
 
-    body {
+  body {
     min-height: 100vh;
     background: linear-gradient(135deg, #d3b5f8 0%, #A47AA3 50%, #5C425C 100%);
+    background-attachment: fixed;
     color: #ffffff;
     overflow-x: hidden;
+  }
+
+  body.no-scroll {
+    overflow: hidden;
   }
 
   /* Navbar */
@@ -76,54 +81,236 @@
     min-height: calc(100vh - 80px);
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     padding: 4rem 2rem;
   }
 
   .landing {
-    max-width: 800px;
+    width: 1100px;
+    max-width: 100%;
     padding: 4rem;
     text-align: center;
     background: rgba(255,255,255,0.12);
     backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,0.15);
     border-radius: 25px;
     box-shadow: 0 20px 50px rgba(0,0,0,0.25);
   }
 
-  h1 {
+  .landing h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
   }
 
-  p {
+  .landing > p {
+    font-size: 1.05rem;
     line-height: 1.7;
     color: rgba(255,255,255,0.85);
-    margin-bottom: 2rem;
+    margin: 0 auto 3rem;
+    max-width: 60ch;
   }
 
-  .btn {
-    display: inline-block;
-    background: white;
-    color: #5C425C;
-    padding: 0.9rem 2.5rem;
+  /* Square cards grid */
+  .exam-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.75rem;
+    text-align: left;
+  }
+
+  .exam-card {
+    position: relative;
+    aspect-ratio: 1 / 1;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    overflow: hidden;
+    padding: 0;
+    cursor: zoom-in;
+    background: #5C425C;
+    color: #ffffff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .exam-card:hover,
+  .exam-card:focus-visible {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.35);
+  }
+
+  .exam-card:focus-visible {
+    outline: 3px solid #e1bee7;
+    outline-offset: 3px;
+  }
+
+  .exam-card img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    transition: transform 0.5s ease;
+  }
+
+  .exam-card:hover img {
+    transform: scale(1.05);
+  }
+
+  .card-info {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 3rem 1.25rem 1.1rem;
+    background: linear-gradient(to top, rgba(40, 24, 50, 0.92) 0%, rgba(40, 24, 50, 0.6) 60%, transparent 100%);
+  }
+
+  .card-info h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+  }
+
+  .card-info p {
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.8);
+  }
+
+  .card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.6rem;
+    font-size: 0.75rem;
+    color: #e1bee7;
+  }
+
+  .badge {
+    background: rgba(255,255,255,0.18);
+    padding: 0.2rem 0.7rem;
     border-radius: 50px;
-    text-decoration: none;
+    font-weight: 500;
+  }
+
+  /* Lightbox */
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 2rem 4.5rem;
+    background: rgba(30, 16, 40, 0.88);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .lightbox.open {
+    display: flex;
+    animation: fadeIn 0.25s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  .lightbox img {
+    max-width: 100%;
+    max-height: calc(100vh - 11rem);
+    border-radius: 15px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    animation: zoomIn 0.25s ease;
+  }
+
+  @keyframes zoomIn {
+    from { transform: scale(0.94); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+  }
+
+  .lightbox-caption {
+    text-align: center;
+    max-width: 60ch;
+  }
+
+  .lightbox-caption h3 {
+    font-size: 1.2rem;
     font-weight: 600;
   }
 
-  .btn:hover {
-    background: #f3e5f5;
-    transform: translateY(-3px);
+  .lightbox-caption p {
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.8);
+    margin-top: 0.2rem;
   }
 
-  img {
-    max-width: 100%;
-    width: 400px;
-    height: auto;
-    display: block;
-    margin: 1.5rem auto 0;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  .lb-btn {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    width: 46px;
+    height: 46px;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 50%;
+    background: rgba(255,255,255,0.14);
+    color: #ffffff;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .lb-btn:hover {
+    background: rgba(255,255,255,0.3);
+  }
+
+  .lb-btn:focus-visible {
+    outline: 3px solid #e1bee7;
+    outline-offset: 2px;
+  }
+
+  .lb-close { top: 1.25rem; right: 1.25rem; }
+  .lb-prev  { left: 1rem;  top: 50%; transform: translateY(-50%); }
+  .lb-next  { right: 1rem; top: 50%; transform: translateY(-50%); }
+
+  @media (max-width: 700px) {
+    nav {
+      padding: 1.5rem 2rem;
+    }
+
+    .nav-links {
+      gap: 1rem;
+    }
+
+    .landing {
+      padding: 3rem 1.5rem;
+    }
+
+    .landing h1 {
+      font-size: 2.3rem;
+    }
+
+    .lightbox {
+      padding: 4.5rem 1rem 5rem;
+    }
+
+    .lb-prev, .lb-next {
+      top: auto;
+      bottom: 1rem;
+      transform: none;
+    }
+
+    .lb-prev { left: calc(50% - 56px); }
+    .lb-next { right: calc(50% - 56px); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; transition: none !important; }
   }
 </style>
 </head>
@@ -147,14 +334,99 @@
     <h1>My Exam Works</h1>
 
     <p>
-      This page contains my examination
-      outputs, activities, and other major assessments.
+      This page contains my examination outputs, activities, and other
+      major assessments.
     </p>
-    <img src="prelimexam.jpg" alt="Prelim Exam">
 
+    <!-- Edit the title, description, and badge text of each card below -->
+    <div class="exam-grid">
+
+      <button class="exam-card" type="button">
+        <img src="prelimexam.jpg" alt="Prelim Exam Screenshot">
+        <div class="card-info">
+          <h3>Prelim Exam</h3>
+          <p>Prelim Examination</p>
+          <div class="card-meta"><span class="badge">Exam</span></div>
+        </div>
+      </button>
+
+      <button class="exam-card" type="button">
+        <img src="midtermexam.png" alt="Midterm Exam Screenshot">
+        <div class="card-info">
+          <h3>Midterm Exam</h3>
+          <p>Midterm Examination</p>
+          <div class="card-meta"><span class="badge">Exam</span></div>
+        </div>
+      </button>
+
+    </div>
 
   </section>
 </main>
+
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Enlarged exam image">
+  <button class="lb-btn lb-close" id="lbClose" aria-label="Close">&times;</button>
+  <button class="lb-btn lb-prev" id="lbPrev" aria-label="Previous image">&#8249;</button>
+  <img id="lbImg" src="" alt="">
+  <div class="lightbox-caption">
+    <h3 id="lbTitle"></h3>
+    <p id="lbDesc"></p>
+  </div>
+  <button class="lb-btn lb-next" id="lbNext" aria-label="Next image">&#8250;</button>
+</div>
+
+<script>
+  const cards    = Array.from(document.querySelectorAll('.exam-card'));
+  const lightbox = document.getElementById('lightbox');
+  const lbImg    = document.getElementById('lbImg');
+  const lbTitle  = document.getElementById('lbTitle');
+  const lbDesc   = document.getElementById('lbDesc');
+  let current = 0;
+  let lastFocused = null;
+
+  function show(index) {
+    current = (index + cards.length) % cards.length;
+    const card = cards[current];
+    const img  = card.querySelector('img');
+    lbImg.src = img.getAttribute('src');
+    lbImg.alt = img.alt;
+    lbTitle.textContent = card.querySelector('h3').textContent;
+    lbDesc.textContent  = card.querySelector('.card-info p').textContent;
+  }
+
+  function openBox(index) {
+    lastFocused = document.activeElement;
+    show(index);
+    lightbox.classList.add('open');
+    document.body.classList.add('no-scroll');
+    document.getElementById('lbClose').focus();
+  }
+
+  function closeBox() {
+    lightbox.classList.remove('open');
+    document.body.classList.remove('no-scroll');
+    if (lastFocused) lastFocused.focus();
+  }
+
+  cards.forEach((card, i) => card.addEventListener('click', () => openBox(i)));
+
+  document.getElementById('lbClose').addEventListener('click', closeBox);
+  document.getElementById('lbPrev').addEventListener('click', () => show(current - 1));
+  document.getElementById('lbNext').addEventListener('click', () => show(current + 1));
+
+  // Click the dark background to close
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeBox();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape')     closeBox();
+    if (e.key === 'ArrowLeft')  show(current - 1);
+    if (e.key === 'ArrowRight') show(current + 1);
+  });
+</script>
 
 </body>
 </html>
